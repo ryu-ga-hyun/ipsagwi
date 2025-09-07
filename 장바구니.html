@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>미니 장바구니 (이미지 버전)</title>
+    <style>
+        /*
+    ============================================
+    👇 CSS는 여기만 만져도 돼요 (아주 쉬운 버전)
+    - 색/간격 바꾸려면 변수와 간단한 값만 수정
+    - 이미지는 .pic, .mini 규칙이 핵심 (object-fit: cover)
+    ============================================
+    */
+        :root {
+            --bg: #0f1115;
+            --card: #161a22;
+            --text: #e8edf3;
+            --muted: #9aa3b2;
+            --line: #262f3f;
+            --brand: #7c93ff;
+            --danger: #f45b5b;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            margin: 0;
+            font-family: ui-sans-serif, system-ui, Segoe UI, Roboto, "Noto Sans KR", sans-serif;
+            background: var(--bg);
+            color: var(--text)
+        }
+
+        .wrap {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 20px
+        }
+
+        /* 상단 */
+        .top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin: 6px 0 14px
+        }
+
+        .brand {
+            font-weight: 800
+        }
+
+        .brand b {
+            color: var(--brand)
+        }
+
+        button {
+            cursor: pointer
+        }
+
+        .btn {
+            border: 1px solid var(--line);
+            background: #111523;
+            color: var(--text);
+            padding: 8px 12px;
+            border-radius: 10px
+        }
+
+        .badge {
+            display: inline-grid;
+            place-items: center;
+            min-width: 22px;
+            height: 22px;
+            border-radius: 999px;
+            background: var(--brand);
+            color: #0c1020;
+            font-weight: 800;
+            font-size: 12px;
+            padding: 0 6px
+        }
+
+        /* 상품 그리드 */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 12px
+        }
+
+        @media (max-width:900px) {
+            .grid {
+                grid-template-columns: repeat(3, 1fr)
+            }
+        }
+
+        @media (max-width:640px) {
+            .grid {
+                grid-template-columns: repeat(2, 1fr)
+            }
+        }
+
+        @media (max-width:420px) {
+            .grid {
+                grid-template-columns: 1fr
+            }
+        }
+
+        /* 카드 */
+        .card {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            overflow: hidden;
+            display: grid
+        }
+
+        .thumb {
+            aspect-ratio: 4/3
+        }
+
+        .pic {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block
+        }
+
+        .body {
+            padding: 12px;
+            display: grid;
+            gap: 6px
+        }
+
+        .title {
+            font-weight: 700
+        }
+
+        .price {
+            color: var(--muted);
+            font-size: 14px
+        }
+
+        /* 장바구니 패널 */
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background: #0008;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .18s ease
+        }
+
+        .overlay.show {
+            opacity: 1;
+            pointer-events: auto
+        }
+
+        .drawer {
+            position: fixed;
+            top: 0;
+            right: 0;
+            height: 100%;
+            width: 360px;
+            max-width: 90%;
+            background: #0c1020;
+            border-left: 1px solid var(--line);
+            transform: translateX(100%);
+            transition: transform .2s ease;
+            display: flex;
+            flex-direction: column
+        }
+
+        .drawer.open {
+            transform: translateX(0)
+        }
+
+        .drawer header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px;
+            border-bottom: 1px solid var(--line)
+        }
+
+        .items {
+            padding: 10px;
+            overflow: auto;
+            flex: 1
+        }
+
+        /* 장바구니 행 한 줄 */
+        .row {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 8px;
+            align-items: center;
+            background: #0f1426;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            padding: 10px
+        }
+
+        .row+.row {
+            margin-top: 10px
+        }
+
+        .name {
+            font-weight: 700
+        }
+
+        .unit {
+            color: var(--muted);
+            font-size: 12px
+        }   
+
+        .mini {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid var(--line)
+        }
+
+        /* 수량, 합계 */
+        .qty {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            padding: 6px
+        }
+
+        .qty .num {
+            min-width: 24px;
+            text-align: center;
+            font-weight: 800
+        }
+
+        .icon {
+            width: 28px;
+            height: 28px;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            background: #0e1324;
+            color: var(--text)
+        }
+
+        .remove {
+            border: 1px solid var(--line);
+            background: transparent;
+            color: var(--danger);
+            border-radius: 8px;
+            padding: 6px 8px
+        }
+
+        .foot {
+            border-top: 1px solid var(--line);
+            padding: 12px;
+            display: grid;
+            gap: 8px;
+            background: #0b1020
+        }
+
+        .sum {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 800
+        }
+
+        .actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px
+        }
+
+        .primary {
+            background: var(--brand);
+            border: 0;
+            color: #0b0f1a;
+            border-radius: 10px;
+            padding: 10px 12px;
+            font-weight: 800
+        }
+
+        .outline {
+            border: 1px solid var(--line);
+            background: transparent;
+            color: var(--text);
+            border-radius: 10px;
+            padding: 10px 12px
+        }
+
+        .empty {
+            color: var(--muted);
+            text-align: center;
+            padding: 18px
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <!-- 상단: 로고 + 장바구니 버튼 -->
+        <div class="top">
+            <div class="brand">mini <b>Shop</b></div>
+            <button id="openCart" class="btn">🛒 장바구니 <span id="count" class="badge">0</span></button>
+        </div>
+
+        <h1 style="font-size:20px;margin:6px 0 12px">상품 목록</h1>
+        <div id="grid" class="grid"></div>
+    </div>
+
+    <!-- 장바구니 패널 -->
+    <div id="overlay" class="overlay" aria-hidden="true"></div>
+    <aside id="drawer" class="drawer" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+        <header>
+            <h2 id="cartTitle" style="margin:0;font-size:18px">장바구니</h2>
+            <button id="closeCart" class="btn">닫기</button>
+        </header>
+        <div id="items" class="items"></div>
+        <div class="foot">
+            <div class="sum"><span>합계</span><strong id="total">₩0</strong></div>
+            <div class="actions">
+                <button class="outline" data-action="clear">비우기</button>
+                <button class="primary" data-action="checkout">주문하기</button>
+            </div>
+        </div>
+    </aside>
+
+    <script>
+        /*
+        ==========================================================
+        🔰 아주 쉬운 수정 포인트
+        1) 내 사진 쓰기  → 아래 PRODUCTS 배열의 img 경로만 바꾸면 끝!
+           예) 'img/me-1.jpg' 처럼 프로젝트 폴더 안 사진 사용
+        2) 규칙 단순화   → setQty() 하나로 수량 처리 (증가/감소/삭제)
+        3) 화면 바꾸기   → renderProducts(), renderCart() 템플릿만 만지면 됨
+        ==========================================================
+        */
+
+        // 1) 상품 데이터 (id, 이름, 가격, 이미지 경로)
+        const PRODUCTS = [
+            { id: 'p1', name: '정희진 사진', price: 8900, img: 'img/me-1.jpg' },
+            { id: 'p2', name: '정희진 숙취', price: 15900, img: 'img/me-2.jpg' },
+            { id: 'p3', name: '나머지 사진', price: 4900, img: 'img/me-3.jpg' },
+            { id: 'p4', name: '나머지 사진', price: 12900, img: 'img/me-4.jpg' },
+            { id: 'p5', name: '나머지 사진', price: 12900, img: 'img/me-5.jpg' },
+            { id: 'p6', name: '나머지 사진', price: 12900, img: 'img/me-6.jpg' }
+        ];
+
+        // 2) 도우미
+        const $ = (sel, el = document) => el.querySelector(sel);                     // $('#id')처럼 짧게
+        const KRW = new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' }); // ₩ 표시
+        const KEY = 'mini-cart-v1';                                                // 저장 키
+
+        // 3) 상태: { 상품id: 수량 }
+        let cart = {};
+        const load = () => { try { cart = JSON.parse(localStorage.getItem(KEY)) || {} } catch { cart = {} } };
+        const save = () => localStorage.setItem(KEY, JSON.stringify(cart));
+
+        const list = () => PRODUCTS.filter(p => cart[p.id]).map(p => ({ ...p, qty: cart[p.id] })); // [{...p, qty}]
+        const totalCount = () => Object.values(cart).reduce((a, b) => a + b, 0);                   // 총 수량
+        const totalPrice = () => list().reduce((t, i) => t + i.price * i.qty, 0);                    // 총 금액
+
+        // 4) 수량을 한 함수로 처리 (간단!)
+        const setQty = (id, qty) => { if (qty <= 0) delete cart[id]; else cart[id] = qty; update(); };
+        const add = (id) => setQty(id, (cart[id] || 0) + 1);
+
+        // 5) 상품 그리기 (이미지 사용)
+        const renderProducts = () => {
+            $('#grid').innerHTML = PRODUCTS.map(p => `
+        <article class="card">
+          <div class="thumb"><img class="pic" src="${p.img}" alt="${p.name}"></div>
+          <div class="body">
+            <div class="title">${p.name}</div>
+            <div class="price">${KRW.format(p.price)}</div>
+            <button class="btn" data-action="add" data-id="${p.id}">담기</button>
+          </div>
+        </article>
+      `).join('');
+        };
+
+        // 6) 장바구니 그리기 (작은 썸네일 포함)
+        const renderCart = () => {
+            const arr = list();
+            if (!arr.length) { $('#items').innerHTML = '<div class="empty">장바구니가 비었어 🙂</div>'; return; }
+            $('#items').innerHTML = arr.map(i => `
+        <div class="row" data-id="${i.id}">
+          <div style="display:flex;align-items:center;gap:8px;min-width:0">
+            <img src="${i.img}" alt="" class="mini">
+            <div>
+              <div class="name">${i.name}</div>
+              <div class="unit">${KRW.format(i.price)} / 개</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <div class="qty" role="group" aria-label="수량 조절">
+              <button class="icon" data-action="dec">−</button>
+              <div class="num">${i.qty}</div>
+              <button class="icon" data-action="inc">+</button>
+            </div>
+            <button class="remove" data-action="remove">삭제</button>
+          </div>
+        </div>
+      `).join('');
+        };
+
+        // 7) 중앙 업데이트 (저장 + 숫자/합계 + 리스트)
+        const update = () => {
+            save();
+            $('#count').textContent = totalCount();
+            $('#total').textContent = KRW.format(totalPrice());
+            renderCart();
+        };
+
+        // 8) 패널 열고 닫기
+        const openCart = () => { $('#drawer').classList.add('open'); $('#overlay').classList.add('show'); $('#overlay').setAttribute('aria-hidden', 'false'); };
+        const closeCart = () => { $('#drawer').classList.remove('open'); $('#overlay').classList.remove('show'); $('#overlay').setAttribute('aria-hidden', 'true'); };
+
+        // 9) 이벤트 (data-action만 쓰면 끝)
+        document.addEventListener('click', (e) => {
+            const btn = e.target.closest('[data-action]');
+            if (btn) {
+                const id = btn.dataset.id || btn.closest('.row')?.dataset.id;
+                const act = btn.dataset.action;
+                if (act === 'add') add(id);
+                if (act === 'inc') setQty(id, (cart[id] || 1) + 1);
+                if (act === 'dec') setQty(id, (cart[id] || 1) - 1);
+                if (act === 'remove') setQty(id, 0);
+                if (act === 'clear') { cart = {}; update(); }
+                if (act === 'checkout') { if (!totalCount()) return alert('담긴 상품이 없어.'); alert('데모: 주문 로직은 없음'); }
+                return;
+            }
+            if (e.target.id === 'openCart') openCart();
+            if (e.target.id === 'closeCart' || e.target === document.getElementById('overlay')) closeCart();
+        });
+
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeCart(); });
+
+        // 10) 시작
+        (function init() { load(); renderProducts(); update(); })();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="shortcut icon" href="favicon.png">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="js/main.js"></script>
+    <title>잎사귀</title>
+</head>
+
+<body style="overflow-x: hidden;">
+    <header>
+        <div class="container nav">
+            <ul>
+                <li>
+                    <ul class="nav-1">
+                        <li><img src="images/header/header_logo.png" alt="헤더로고"></li>
+                        <li>
+                            <ul class="nav-2">
+                                <li><a href="#">커뮤니티</a>
+                                    <ul class="nav-3">
+                                        <li><a href="#">식물일지공유</a></li>
+                                        <li><a href="#">재배 꿀팁</a></li>
+                                        <li><a href="#">베란다 자랑하기</a></li>
+                                        <li><a href="#">자유게시판</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">스토어</a>
+                                    <ul class="nav-3">
+                                        <li><a href="index-2.html" target="_blank">식물 · 씨앗</a></li>
+                                        <li><a href="#">플라워</a></li>
+                                        <li><a href="#">화분</a></li>
+                                        <li><a href="#">플랜테리어 소품</a></li>
+                                        <li><a href="#">가드닝 용품</a></li>
+                                        <li><a href="#">DIY 키트</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">식물백과</a>
+                                    <ul class="nav-3">
+                                        <li><a href="#">입문자가이드</a></li>
+                                        <li><a href="#">식물별 관리법</a></li>
+                                        <li><a href="#">병해충/환경 진단</a></li>
+                                        <li><a href="#">키우기 질문 모음</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <div class="search">
+                                <img src="images/header/search.png" alt="돋보기">
+                                <input type="text" placeholder="검색어를 입력하세요!">
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <img src="images/header/notifications.png" alt="알람">
+                    <img src="images/header/Group.png" alt="장바구니">
+                    <img src="images/header/person.png" alt="로그인">
+                </li>
+            </ul>
+            <div class="toggle" id="langToggle">
+                <ul>
+                    <li>주문내역 <span class="arrow">⏷</span></li>
+                    <li>글쓰기</li>
+                    <li>최근활동</li>
+                    <li>거래내역</li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="container swiper">
+            <div class="inner">
+                <div class="main1title">
+                    <img src="images/main1/title.png" alt="main1title">
+                </div>
+                <!-- Swiper -->
+                <div class="swiper mySwiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="images/main1/slide1.png" alt="">
+                            <button class="button button1">공간식물 보러가기
+                                <img src="images/main1/left.png" alt="">
+                            </button>
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="images/main1/slide2.png" alt="">
+                            <button class="button button2">다육식물 보러가기
+                                <img src="images/main1/left.png" alt="">
+                            </button>
+
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="images/main1/slide3.png" alt="">
+                            <button class="button button3">무늬식물 보러가기
+                                <img src="images/main1/left.png" alt="">
+                            </button>
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="images/main1/slide4.png" alt="">
+                            <button class="button button4">드리잉식물 보러가기
+                                <img src="images/main1/left.png" alt="">
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="swiper-button-next next1">
+                </div>
+                <div class="swiper-button-prev prev1">
+                </div>
+                <!-- Initialize Swiper -->
+                <script>
+                    var swiper = new Swiper(".mySwiper", {
+                        navigation: {
+                            nextEl: ".next1",
+                            prevEl: ".prev1",
+                        },
+                        effect: 'slide',
+                        loop: true,
+                        loopAdditionalSlides: 1,
+                        autoplay: {
+                            delay: 3000,
+                        },
+
+                    });
+                </script>
+            </div>
+        </div>
+
+        <div class="container story">
+            <div class="inner">
+                <div class="title">
+                    <h1 class="title-text">오늘의 성장이야기</h1>
+                    <img src="images/main2/vector.png" alt="화살표" class="title-image">
+                </div>
+                <div class="storydummy">
+                    <div class="growstory grow1" data-aos="fade-up" data-aos-delay="300">
+                        <img src="images/main2/Rectangle 1.png" alt="">
+                        <div class="storyprofile1">
+                            <div class="storypf1">
+                                <img src="images/main2/Ellipse1.png" alt="">
+                                <p>leafmom</p>
+                            </div>
+                            <p>“몬스테라가 드디어 새 잎을 내밀었어요. <br>며칠 전만 해도 아무 반응이 없어서 조금 지쳤는데 <br>괜히 마음이 따뜻해졌어요.”</p>
+                        </div>
+
+                    </div>
+                    <div class="growstory" data-aos="fade-up" data-aos-delay="400">
+                        <img src="images/main2/Rectangle 2.png" alt="">
+                        <div class="storyprofile">
+                            <img src="images/main2/Ellipse2.png" alt="">
+                            <p>이파리마법사</p>
+                        </div>
+                        <!-- <span>"산책하다가 신기한 <br>식물을 발견했어요."</span> -->
+                    </div>
+                    <div class="growstory" data-aos="fade-up" data-aos-delay="500">
+                        <img src="images/main2/Rectangle 3.png" alt="">
+                        <div class="storyprofile">
+                            <img src="images/main2/Ellipse3.png" alt="">
+                            <p>flower655</p>
+                        </div>
+                        <!-- <span>"이런 핑크 선인장을 <br>키워보고 싶어요."</span> -->
+
+                    </div>
+                    <div class="growstory" data-aos="fade-up" data-aos-delay="600">
+                        <img src="images/main2/Rectangle 4.png" alt="">
+                        <div class="storyprofile">
+                            <img src="images/main2/Ellipse4.png" alt="">
+                            <p>풀냄새4545</p>
+                        </div>
+                        <!-- <span>"우리집 창가는 <br>언제나 파릇파릇해요."</span> -->
+                    </div>
+                    <div class="growstory" data-aos="fade-up" data-aos-delay="700">
+                        <img src="images/main2/Rectangle 5.png" alt="">
+                        <div class="storyprofile">
+                            <img src="images/main2/Ellipse5.png" alt="">
+                            <p>당근당근7</p>
+                        </div>
+                        <!-- <span>"선인장 키우는 재미에 푹 빠졌어요."</span> -->
+                    </div>
+                </div>
+                <div class="section3">
+                    <div class="container">
+                        <div class="title">
+                            <h1 class="title-text">실시간 커뮤니티 핫토픽</h1>
+                            <img src="images/Vector.png" alt="화살표" class="title-image">
+                        </div>
+                        <div class="button" data-aos="fade-up">
+                            <button># 분갈이꿀팁</button>
+                            <button># 토마토키우기</button>
+                            <button># 실내식물추천</button>
+                            <button># 식물병해충진단</button>
+                            <button># 초보자식물</button>
+                        </div>
+                        <div class="inner">
+                            <div class="hottopic-img" data-aos="fade-up" data-aos-delay="400">
+                            </div>
+                            <div class="hottopic-img" data-aos="fade-up" data-aos-delay="500">
+                            </div>
+                            <div class="hottopic-img" data-aos="fade-up" data-aos-delay="600">
+                            </div>
+                            <div class="hottopic-img" data-aos="fade-up" data-aos-delay="700">
+                            </div>
+                            <div class="hottopic-img" data-aos="fade-up" data-aos-delay="800">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="section4">
+                    <div class="container">
+                        <div class="title">
+                            <h1 class="title-text">이달의 추천 식물 키우기 패키지</h1>
+                            <img src="images/Vector.png" alt="화살표" class="title-image">
+                        </div>
+                        <div class="inner">
+                            <div class="item" data-aos="fade-up" data-aos-delay="300">
+                                <div class="wrapper">
+                                    <div class="text">
+                                        <p>이오난사 공기정화 선물 SET</p>
+                                        <h4>12,600원</h4>
+                                    </div>
+                                    <div class="icon">
+                                        <div class="favorite">
+                                            <div class="heart-img"></div>
+                                            <div class="heart-img"></div>
+                                            <div class="heart-img"></div>
+                                            <div class="heart-img"></div>
+                                            <div class="heart-img"></div>
+                                            <div class="favorite-img"></div>
+                                        </div>
+                                        <div class="local-mall">
+                                            <div class="local-img"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item" data-aos="fade-up" data-aos-delay="400">
+                                <div class="wrapper">
+                                    <div class="text">
+                                        <p>무늬 수성 아이비 공기정화식물</p>
+                                        <h4>19,800원</h4>
+                                    </div>
+                                    <div class="icon">
+                                        <div class="favorite">
+                                            <div class="heart-img"></div>
+                                            <div class="heart-img"></div>
+                                            <div class="heart-img"></div>
+                                            <div class="heart-img"></div>
+                                            <div class="heart-img"></div>
+                                            <div class="favorite-img"></div>
+                                        </div>
+                                        <div class="local-mall">
+                                            <div class="local-img"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item" data-aos="fade-up" data-aos-delay="500">
+                                <div class="wrapper">
+                                    <div class="text">
+                                        <p>하트선인장 키우기</p>
+                                        <h4>9,900원</h4>
+                                    </div>
+                                    <div class="icon">
+                                        <div class="favorite">
+                                            <div class="heart-img"></div>
+                                            <div class="heart-img"></div>
+                                            <div class="heart-img"></div>
+                                            <div class="heart-img"></div>
+                                            <div class="heart-img"></div>
+                                            <div class="favorite-img"></div>
+                                        </div>
+                                        <div class="local-mall">
+                                            <div class="local-img"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item" data-aos="fade-up" data-aos-delay="600">
+                                <div class="wrapper">
+                                    <div class="text">
+                                        <p>베란다텃밭세트 토마토</p>
+                                        <h4>22,000원</h4>
+                                    </div>
+                                    <div class="icon">
+                                        <div class="favorite">
+                                            <div class="heart-img"></div>
+                                            <div class="heart-img"></div>
+                                            <div class="heart-img"></div>
+                                            <div class="heart-img"></div>
+                                            <div class="heart-img"></div>
+                                            <div class="favorite-img"></div>
+                                        </div>
+                                        <div class="local-mall">
+                                            <div class="local-img"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item" data-aos="fade-up" data-aos-delay="700">
+                                <div class="wrapper">
+                                    <div class="text">
+                                        <p>미니정원 반려식물 바질</p>
+                                        <h4>15,800원</h4>
+                                    </div>
+                                    <div class="icon">
+                                        <div class="favorite">
+                                            <div class="heart-img"></div>
+                                            <div class="heart-img"></div>
+                                            <div class="heart-img"></div>
+                                            <div class="heart-img"></div>
+                                            <div class="heart-img"></div>
+                                            <div class="favorite-img"></div>
+                                        </div>
+                                        <div class="local-mall">
+                                            <div class="local-img"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item" data-aos="fade-up" data-aos-delay="800">
+                                <div class="wrapper">
+                                    <div class="text">
+                                        <p>베란다 로즈마리 키우기</p>
+                                        <h4>11,400원</h4>
+                                    </div>
+                                    <div class="icon">
+                                        <div class="favorite">
+                                            <div class="heart-img"></div>
+                                            <div class="heart-img"></div>
+                                            <div class="heart-img"></div>
+                                            <div class="heart-img"></div>
+                                            <div class="heart-img"></div>
+                                            <div class="favorite-img"></div>
+                                        </div>
+                                        <div class="local-mall">
+                                            <div class="local-img"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container various">
+                    <div class="title-1">
+                        <h1 class="title-text">다양한 식물 둘러보기</h1>
+                        <img src="images/header/Vector.png" alt="화살표" class="title-image">
+                    </div>
+                    <!-- Swiper -->
+                    <div class="swiper mySwiper">
+                        <div>"반려식물부터 희귀 식물까지 당신의 공간을 <br> 채워줄 식물들을 만나보세요"</div>
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide plant-slide">
+                                <div class="plant">
+                                    <img src="images/main5/text-1.png" alt="text-box">
+                                    <img src="images/main5/plant-1.png" alt="plant-space">
+                                </div>
+                            </div>
+                            <div class="swiper-slide plant-slide">
+                                <div class="plant">
+                                    <img src="images/main5/text-2.png" alt="text-box">
+                                    <img src="images/main5/plant-2.png" alt="plant-space">
+                                </div>
+                            </div>
+                            <div class="swiper-slide plant-slide">
+                                <div class="plant">
+                                    <img src="images/main5/text-3.png" alt="text-box">
+                                    <img src="images/main5/plant-3.png" alt="plant-space">
+                                </div>
+                            </div>
+                            <div class="swiper-slide plant-slide">
+                                <div class="plant">
+                                    <img src="images/main5/text-4.png" alt="text-box">
+                                    <img src="images/main5/plant-4.png" alt="plant-space">
+                                </div>
+                            </div>
+                            <div class="swiper-slide plant-slide">
+                                <div class="plant">
+                                    <img src="images/main5/text-5.png" alt="text-box">
+                                    <img src="images/main5/plant-5.png" alt="plant-space">
+                                </div>
+                            </div>
+                            <div class="swiper-slide plant-slide">
+                                <div class="plant">
+                                    <img src="images/main5/text-6.png" alt="text-box">
+                                    <img src="images/main5/plant-6.png" alt="plant-space">
+                                </div>
+                            </div>
+                            <div class="swiper-slide plant-slide">
+                                <div class="plant">
+                                    <img src="images/main5/text-7.png" alt="text-box">
+                                    <img src="images/main5/plant-7.png" alt="plant-space">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+                <div class="section6">
+                    <div class="container">
+                        <div class="title">
+                            <h1 class="title-text">7일 키우기 챌린지 참여하기</h1>
+                            <img src="images/Vector.png" alt="화살표" class="title-image">
+                        </div>
+                        <div class="inner">
+                            <div class="item" data-aos="fade-up" data-aos-delay="300">
+                                <div class="text">
+                                    <div class="content">오늘도 자라는 중 ^^ ~</div>
+                                    <div class="profile">
+                                        <div class="img" style="background-color: #FF58E9;"></div>
+                                        <div class="name">선인장4545</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item" data-aos="fade-up" data-aos-delay="400">
+                                <div class="text">
+                                    <div class="content">벌써 7일 완주 !!</div>
+                                    <div class="profile">
+                                        <div class="img" style="background-color: #FF6767;"></div>
+                                        <div class="name">허브향기</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item" data-aos="fade-up" data-aos-delay="500">
+                                <div class="text">
+                                    <div class="content">매일매일 물주기 성공</div>
+                                    <div class="profile">
+                                        <div class="img" style="background-color: #27EAA6;"></div>
+                                        <div class="name">소담플랜트</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item" data-aos="fade-up" data-aos-delay="600">
+                                <div class="text">
+                                    <div class="content">처음 키우는 다육이<br>이름은 다다랍니다 ~</div>
+                                    <div class="profile">
+                                        <div class="img" style="background-color: #DDFFD9;"></div>
+                                        <div class="name">leaf_log</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="gotop">
+                    <img src="images/gotop.png" alt="고탑버튼">
+                </div>
+    </main>
+    <footer>
+        <div class="container footer-1">
+            <ul>
+                <li>
+                    <img src="images/footer/footer_logo.png" alt="footer-logo">
+                    <div>고객센터 1234-5678</div>
+                    <div>운영시간 : 평일 09:00 ~ 18:00 (점심시간 12:00 ~ 13:00 제외)</div>
+                    <div class="FAQ">
+                        <div>FAQ</div>
+                        <div>1:1 문의</div>
+                    </div>
+                </li>
+                <li>
+                    <ul>
+                        <li>ABOUT US
+                            <ul>
+                                <li><a href="#">잎사귀 소개</a></li>
+                                <li><a href="#">연혁</a></li>
+                                <li><a href="#">인재채용</a></li>
+                            </ul>
+                        </li>
+                        <li>MY PAGE
+                            <ul>
+                                <li><a href="#">주문채용</a></li>
+                                <li><a href="#">취소/반품/교환</a></li>
+                                <li><a href="#">상품리뷰 내역</a></li>
+                            </ul>
+                        </li>
+                        <li>MY ACCOUNT
+                            <ul>
+                                <li><a href="#">회원정보수정</a></li>
+                                <li><a href="#">회원등급</a></li>
+                                <li><a href="#">활동내역</a></li>
+                                <li><a href="#">마일리지내역</a></li>
+                            </ul>
+                        </li>
+                        <li>HELP
+                            <ul>
+                                <li><a href="#">1:1 문의</a></li>
+                                <li><a href="#">공지사항</a></li>
+                                <li><a href="#">상품 Q&A</a></li>
+                                <li><a href="#">고객의 목소리</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="container footer-2">
+            <ul>
+                <li>
+                    <div>(우)42601 대구광역시 달서구 자연길 123, 플랜트타운 2층 잎사귀본사</div>
+                    <ul>
+                        <li>TEL 053.123.4567</li>
+                        <li>FAX 053.987.6543</li>
+                        <li>E-mail: contact@plantspace.kr</li>
+                        <li>사업자등록번호 123-45-67890</li>
+                    </ul>
+                    <div>© 2025 leafsa. All rights reserved.</div>
+                </li>
+                <li><img src="images/footer/sns_logo.png" alt="sns로고"></li>
+            </ul>
+        </div>
+    </footer>
+    <!-- 하단 고정 장바구니 버튼 -->
+    <div class="cart-fab" id="cartFab" aria-label="장바구니">
+        🛒
+        <span class="cart-badge" id="cartBadge" aria-live="polite">0</span>
+    </div>
+    <!-- 장바구니 드로어 -->
+    <div class="cart-backdrop" id="cartBackdrop"></div>
+    <aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
+        <div class="cart-drawer__header">
+            <strong>장바구니</strong>
+            <button class="cart-drawer__close" id="cartClose" aria-label="닫기">×</button>
+        </div>
+        <ul class="cart-list" id="cartList"></ul>
+        <div class="cart-drawer__footer">
+            <div class="cart-total"><span>합계</span><strong id="cartTotal">0원</strong></div>
+            <button class="cart-action" id="cartCheckout">구매하기</button>
+        </div>
+    </aside>
+    <!-- Initialize Swiper -->
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            slidesPerView: "auto",
+            centeredSlides: true,
+            spaceBetween: 10,
+            grabCursor: true,
+            initialSlide: 3,
+            pagination: {
+                el: ".swiper-pagination",
+            },
+
+            keyboard: {
+                enabled: true,
+                onlyInViewport: true,
+            },
+
+            autoplay: true,
+        });
+        AOS.init()
+
+        document.querySelector('.gotop').addEventListener('click', function () {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+
+</html>
