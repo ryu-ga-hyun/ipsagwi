@@ -106,7 +106,7 @@ header {
     display: flex;
     justify-content: space-between;
 }
-.nav-1>li>img {
+.nav-1>li >a>img {
     width: 119px;
     margin-top: 5px;
 }
